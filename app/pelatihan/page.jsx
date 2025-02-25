@@ -2,7 +2,9 @@ import React from 'react'
 
 const Pelatihan = () => {
   return (
-    <div>Pelatihan</div>
+    <div className='h-screen bg-green'>
+    <h1 className='text-6xl text-center font-robotoExtraBold pt-20'>PELATIHAN</h1>
+  </div>
   )
 }
 

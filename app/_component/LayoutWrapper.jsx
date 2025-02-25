@@ -1,4 +1,4 @@
-"use client"; // Tandai sebagai client component
+"use client"
 
 import { usePathname } from "next/navigation";
 import Navbar from "./navbar";
