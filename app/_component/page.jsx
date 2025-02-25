@@ -34,8 +34,8 @@ const Login = () => {
     };
 
     return (
-        <div className='absolute w-[30%] min-w-72 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/10 backdrop-blur xl:px-10 xl:py-10 py-4 px-4 rounded-2xl'>
-            <div className='w-full bg-white px-3 rounded-xl py-4 shadow-2xl'>
+        <div className='fixed inset-0 px-6 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+            <div className='w-80 bg-white px-3 rounded-xl py-4 shadow-2xl'>
                 <h1 className='text-2xl text-center font-bold mb-2'>Login</h1>
                 <form onSubmit={handleLogin} className='mx-auto mb-4'>
                     <div className='mx-auto mb-3'>

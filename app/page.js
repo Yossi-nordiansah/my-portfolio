@@ -10,14 +10,12 @@ import Navbar from "./_component/navbar"
 export default function Home() {
   return (
     <div>
-      <Navbar/>
       <Hero/>
       <Keunggulan/>
       <Intro/>
       <Program/>
       <Alur/>
       <QuestionsList/>
-      <Footer/>
     </div>
   );
 }

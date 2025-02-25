@@ -1,0 +1,18 @@
+"use client"; // Tandai sebagai client component
+
+import { usePathname } from "next/navigation";
+import Navbar from "./navbar";
+import Footer from "./footer";
+
+export default function LayoutWrapper({ children }) {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/admin");
+
+  return (
+    <>
+      {!isAdminPage && <Navbar />}
+      {children}
+      {!isAdminPage && <Footer />}
+    </>
+  );
+}
