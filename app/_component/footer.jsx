@@ -36,6 +36,7 @@ export default function Footer() {
       <div className="text-center mt-8 text-sm text-gray-400">
         © {new Date().getFullYear()} ICONEPS. All rights reserved.
       </div>
+      <p className="text-[12px] text-center mt-2">Developed By <a href="https://www.instagram.com/yossi_nordiansah" className="font-semibold">Yossi Nordiansah</a></p>
     </footer>
   );
 }

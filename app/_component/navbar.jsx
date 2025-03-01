@@ -1,12 +1,14 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDesktopMenuAccount, setShowDesktopMenuAccount] = useState(false);
   const [showMobileMenuAccount, setShowMobileMenuAccount] = useState(false);
   const [changeNavbarColor, setChangeNavbarColor] = useState(false);
+  const pathname = usePathname();
 
   const handleToggle = (setter) => () => setter((prev) => !prev);
 
@@ -18,7 +20,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`fixed z-20 flex ${changeNavbarColor ? 'bg-secondary' : 'bg-transparent'} items-center justify-between w-full px-5 py-4 overflow-visible xl:py-0`}>
+    <div className={`fixed z-20 flex items-center justify-between w-full px-5 py-4 overflow-visible xl:py-0 
+      ${pathname != '/' ? 'bg-secondary' : changeNavbarColor ? 'bg-secondary' : 'bg-transparent'}`}>
+    
       {/* Logo */}
       <div className='flex items-center gap-2'>
         <img src="/images/iconeps_logo.png" alt="ICONEPS Logo" className='w-8 sm:w-11' />
@@ -28,7 +32,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className='hidden sm:flex items-center text-white font-roboto'>
         {['/', '/jadwal', '/pelatihan'].map((path, index) => (
-          <Link key={index} href={path} className="relative px-4 py-4 group">
+          <Link key={index} href={path} className={`${pathname === path ? 'text-yellow-400 font-bold' : "" } relative px-4 py-4 group`}>
             <p>{['Home', 'Jadwal', 'Pelatihan'][index]}</p>
             <div className="absolute bottom-0 left-0 w-0 h-1 transition-all duration-300 bg-green group-hover:w-full"></div>
           </Link>
@@ -59,7 +63,7 @@ const Navbar = () => {
         <img src="/icons/close.svg" className='w-10 mb-2 ml-4 cursor-pointer' alt="close icon" onClick={handleToggle(setShowMenu)} />
 
         {['/', '/jadwal', '/pelatihan'].map((path, index) => (
-          <Link key={index} href={path} className='px-5 block py-4 text-2xl border-b-2 font-semibold' onClick={handleToggle(setShowMenu)}>
+          <Link key={index} href={path} className="px-5 block py-4 text-2xl border-b-2 font-semibold" onClick={handleToggle(setShowMenu)}>
             {['Home', 'Jadwal', 'Pelatihan'][index]}
           </Link>
         ))}

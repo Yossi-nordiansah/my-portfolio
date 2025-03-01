@@ -4,10 +4,10 @@ import React from "react";
 const Alur = () => {
 
     return (
-        <div className="px-4 py-6 md:px-10">
-            <h1 className="mb-10 text-2xl underline md:text-3xl font-robotoExtraBold text-blue-950">Alur Pelatihan ICONEPS</h1>
+        <div className="px-4 py-6 md:px-10 bg-white/75">
+            <h1 className="mb-10 text-2xl underline md:text-3xl font-robotoExtraBold text-blue-950 ">Alur Pelatihan ICONEPS</h1>
             <div className="flex flex-col-reverse items-start justify-between lg:items-center lg:flex-row">
-                <div className="lg:w-[50%] ">
+                <div className="lg:w-[50%]">
                     <div>
                         <div className="flex items-center gap-6">
                             <div className="p-1 bg-blue-500 border-4 rounded-full w-fit border-primary">
