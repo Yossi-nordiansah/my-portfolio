@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import PopupLogin from './login';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDesktopMenuAccount, setShowDesktopMenuAccount] = useState(false);
   const [showMobileMenuAccount, setShowMobileMenuAccount] = useState(false);
   const [changeNavbarColor, setChangeNavbarColor] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   const handleToggle = (setter) => () => setter((prev) => !prev);
@@ -20,7 +22,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`fixed z-20 flex items-center justify-between w-full px-5 py-4 overflow-visible xl:py-0 
+    <div className={`fixed z-20 flex items-center justify-between w-full px-5 sm:py-1 py-3 overflow-visible 
       ${pathname != '/' ? 'bg-secondary' : changeNavbarColor ? 'bg-secondary' : 'bg-transparent'}`}>
     
       {/* Logo */}
@@ -29,7 +31,7 @@ const Navbar = () => {
         <h1 className='text-2xl text-white sm:text-4xl font-robotoBold'>ICONEPS</h1>
       </div>
 
-      {/* Desktop Menu */}
+      {/* Desktop Menu */} 
       <div className='hidden sm:flex items-center text-white font-roboto'>
         {['/', '/jadwal', '/pelatihan'].map((path, index) => (
           <Link key={index} href={path} className={`${pathname === path ? 'text-yellow-400 font-bold' : "" } relative px-4 py-4 group`}>
@@ -38,7 +40,7 @@ const Navbar = () => {
           </Link>
         ))}
 
-        <button onClick={handleToggle(setShowDesktopMenuAccount)} className="px-4 py-2 group">
+        <button onClick={()=>setIsOpen(true)} className="px-4 py-2 group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" height="30px" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
           </svg>
@@ -46,11 +48,11 @@ const Navbar = () => {
 
         {/* Desktop Dropdown Menu */}
         <div className={`absolute top-14 shadow-2xl z-20 bg-white right-0 transition-transform duration-200 ${showDesktopMenuAccount ? 'translate-x-0' : 'translate-x-40'}`}>
-          <Link href="/profile" className='flex items-center gap-1 px-4 py-2' onClick={handleToggle(setShowDesktopMenuAccount)}>
+          <Link href="/profile" className='flex items-center gap-1 px-4 py-2'>
             <img src="/icons/setting.svg" className='w-5' alt="Edit Profil" />
             <p className='text-sm text-black'>Edit Profil</p>
           </Link>
-          <Link href="/logout" className='flex items-center gap-1 px-4 py-2' onClick={handleToggle(setShowDesktopMenuAccount)}>
+          <Link href="/" className='flex items-center gap-1 px-4 py-2'>
             <img src="/icons/logout.svg" className='w-5' alt="Logout" />
             <p className='text-sm text-black'>Logout</p>
           </Link>
@@ -67,8 +69,8 @@ const Navbar = () => {
             {['Home', 'Jadwal', 'Pelatihan'][index]}
           </Link>
         ))}
-        <div className='font-semibold flex items-baseline gap-2 px-5 py-4 text-2xl cursor-pointer' onClick={handleToggle(setShowMobileMenuAccount)}>
-          <p>Akun</p>
+        <div className='font-semibold flex items-baseline gap-2 px-5 py-4 text-2xl cursor-pointer' onClick={()=>setIsOpen(true)}>
+          <p>Login</p>
           <img src="/icons/arrow.svg" className={`w-4 ${showMobileMenuAccount ? 'rotate-180' : 'rotate-90'} duration-100`} alt="arrow icon" />
         </div>
 
@@ -83,6 +85,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+      <PopupLogin isOpen={isOpen} close={() => setIsOpen(false)}/>
     </div>
   );
 };

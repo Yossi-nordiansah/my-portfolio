@@ -41,14 +41,12 @@ const Alur = () => {
                             <div className="p-1 bg-blue-500 border-4 rounded-full w-fit border-primary">
                                 <img src="/images/waiting.png" alt="" className="w-6" />
                             </div>
-                            <h1 className="text-xl text-blue-950 font-montserrat_extrabold">Menunggu Waktu Pelatihan</h1>
+                            <h1 className="text-xl text-blue-950 font-montserrat_extrabold">Menunggu Waktu Pelatihan Dimulai</h1>
                         </div>
                         <ol className="pb-1 pl-12 mt-1 ml-5 space-y-2 text-sm list-decimal list-inside border-l-2 border-gray-400 text-blue-950 font-montserrat_extrabold">
-                            <li>pilih program (pusbas/puskom)</li>
-                            <li>lakukan pembayaran</li>
-                            <li>simpan bukti pembayaran</li>
-                            <li>isi form pendaftaran</li>
-                            <li>submit</li>
+                            <p>
+                                Setelah anda melakukan pendaftaran maka anda akan menunggu jadwal pelatihan dimulai yang disesuaikan dengan periode dari waktu pelatihan.
+                            </p>
                         </ol>
                     </div> 
                     <div>
@@ -56,12 +54,12 @@ const Alur = () => {
                             <div className="p-1 bg-blue-500 border-4 rounded-full w-fit border-primary">
                                 <img src="/images/certificate.png" alt="" className="w-6" />
                             </div>
-                            <h1 className="text-xl font-montserrat_extrabold text-blue-950">Pelatihan</h1>
+                            <h1 className="text-xl font-montserrat_extrabold text-blue-950">Masa Pelatihan</h1>
                         </div>
                         <ol className="pb-1 pl-12 mt-1 ml-5 space-y-2 text-sm list-decimal list-inside border-l-2 border-gray-400 text-blue-950 font-montserrat_extrabold">
-                            <li>Waktu pelatihan akan disesuaikan dengan kelas yang anda ikuti (weekend/weekday)</li>
+                            <li>Jadwal pelatihan akan disesuaikan dengan kelas yang anda ikuti (weekend/weekday)</li>
                             <li>Jika anda lulus, seritifkat bisa didownload melalui website ini</li>
-                            <li>Jika tidak lulus, maka anda masih bisa mengikuti remidi</li>
+                            <li>Jika tidak lulus, maka anda masih bisa mengikuti remidi dengan ketentuan yang berlaku</li>
                         </ol>
                     </div> 
                 </div>

@@ -2,110 +2,196 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import PopupLogin from '../_component/login';
 
 const Registrasi = () => {
     const router = useRouter()
     const [showPasswordButton, setShowPasswordButton] = useState(false);
     const [showConfirmPasswordButton, setShowConfirmPasswordButton] = useState(false);
-    const [nama, setNama] = useState('');
-    const [email, setEmail] = useState('');
-    const [nomorTelepon, setNomorTelepon] = useState('');
-    const [prodi, setProdi] = useState(''); 
-    const [semester, setSemester] = useState('');
-    const [nim, setNim] = useState('');
-    const [password, setPassword] = useState('');
-    const [confPassword, setConfPassword] = useState('');
+    const [isOpen, setIsopen] = useState(false);
+    const [form, setForm] = useState({
+        nama: "",
+        email: "",
+        telepon: "",
+        fakultas: "",
+        prodi: "",
+        semester: "",
+        nim: "",
+        password: "",
+        confirmPassword: "",
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const fakultasProdi = {
+        "Fakultas Teknik": ["Informatika", "Teknik Sipil", "Teknik Mesin", "Teknik Industri"],
+        "Fakultas Ekonomi": ["Manajemen", "Akuntansi"],
+        "Fakultas Ilmu Sosial Dan Ilmu Politik": ["Ilmu Pemerintahan", "Ilmu Komunikasi"],
+        "Fakultas Agama Islam": ["Pendidikan Agama Islam"],
+        "Fakultas Keguruan dan Ilmu Pendidikan": ["Pendidikan Bahasa Indonesia", "Pendidikan Bahasa Inggris", "Pendidikan Matematika", "Pendidikan Kepelatihan Olahraga"],
+    };
 
-    const handleOnSubmitRegister = async (e) => {
-        e.preventDefault();
+    const [prodiList, setProdiList] = useState([]);
 
-        if (isSubmitting) return;
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
 
-        setIsSubmitting(true);
-        try {
-            const response = await axios.post('http://localhost:5000/users/register', {
-                nama,
-                email,
-                nomorTelepon,
-                prodi,
-                semester,
-                nim,
-                password,
-                confPassword,
-            });
-            console.log(response.data)
-            alert(response.data.message);
-            navigate('/login')
-        } catch (error) {
-            if (error.response) {
-                console.log(error.response)
-                alert(error.response.data.message);
-            } else {
-                alert("Terjadi kesalahan: " + error.message);
-            }
-        } finally {
-            setIsSubmitting(false);
+        if (name === "fakultas") {
+            setProdiList(fakultasProdi[value] || []);
+            setForm((prev) => ({ ...prev, prodi: "" }));
         }
+    };
 
-    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(form);
+        // TODO: Submit ke backend
+    };
 
     return (
-        <div className='min-h-screen p-5 bg-gradient-to-br from-white to-blue-400 shadow-2xl flex flex-wrap justify-center lg:gap-32 gap-10 items-center'>
-            <img src="/images/registrasi.png" alt="" className='w-96 lg:w-[450px]' />
-            <form onSubmit={handleOnSubmitRegister} className='sm:min-w-64 min-w-full h-fit max-w-[450px] rounded-lg border-4 border-blue-700 text-gray-950 backdrop-blur bg-white/20 py-4 px-4'>
-                <h1 className='font-semibold text-center mb-2 text-xl'>Registrasi</h1>
-                <div className='mb-3 flex sm:flex-row flex-col justify-center gap-2'>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="nama" className='mb-1 block font-semibold'>Nama Lengkap</label>
-                        <input value={nama} onChange={(e) => setNama(e.target.value)} type="text" id='nama' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="email" className='mb-1 block font-semibold'>Email</label>
-                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id='email' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                </div>
-                <div className='mb-3 flex sm:flex-row flex-col justify-center gap-2'>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="telepon" className='mb-1 block font-semibold'>Nomor Telepon / WA</label>
-                        <input value={nomorTelepon} onChange={(e) => setNomorTelepon(e.target.value)} type="tel" id='telepon' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="prodi" className='mb-1 block font-semibold'>Fakultas / Prodi</label>
-                        <input value={prodi} onChange={(e) => setProdi(e.target.value)} type="text" id='prodi' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                </div>
-                <div className='mb-3 sm:flex-row flex-col flex justify-center gap-2'>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="semester" className='mb-1 block font-semibold'>Semester</label>
-                        <input value={semester} onChange={(e) => setSemester(e.target.value)} type="text" id='semester' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                    <div className='w-full sm:w-fit'>
-                        <label htmlFor="nim" className='mb-1 block font-semibold'>NIM</label>
-                        <input value={nim} onChange={(e) => setNim(e.target.value)} type="text" id='nim' className='w-full px-2 py-1 rounded-md outline-none shadow-2xl border-blue-300 border text-black' required />
-                    </div>
-                </div>
-                <div className='w-full'>
-                    <label className='mb-1 block font-semibold' htmlFor="password">Password</label>
-                    <div className='flex justify-between rounded-md border border-blue-300 overflow-hidden bg-white shadow-2xl'>
-                        <input value={password} onChange={(e) => setPassword(e.target.value)} type={`${showPasswordButton ? 'text' : 'password'}`} id='password' required className='w-[85%] px-2 py-1 outline-none bg-transparent text-black' />
-                        <div className='w-[15%] cursor-pointer flex justify-center px-2 py-1' onClick={() => setShowPasswordButton(!showPasswordButton)}>
-                            <img className='block' src={`${showPasswordButton ? "/icons/showPassword.svg" : "/icons/hidePassword.svg"}`} alt="show password" />
+        <div className='min-h-screen pt-24 pb-12 bg-gradient-to-br from-white to-blue-400 shadow-2xl lg:px-12 md:px-8 px-3 flex justify-between gap-10 items-center'>
+            <img src="/images/registrasi.png" alt="" className='min-w-52 lg:w-[450px] drop-shadow-2xl mx-auto sm:block hidden' />
+            <div className='lg:max-w-[520px] md:max-w-[450px] w-full md:min-w-96 min-w-64 rounded-xl  bg-blue-500/50 px-5 py-3 shadow-xl mx-auto'>
+                <h1 className='text-3xl font-robotoBold text-blue-950 mb-3 sm:text-left text-center'>Registrasi</h1>
+                <form onSubmit={handleSubmit} className="space-y-3 w-full ">
+                    <input
+                        type="text"
+                        name="nama"
+                        placeholder="Nama Lengkap"
+                        value={form.nama}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded-lg border-blue-500 outline-blue-400"
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={form.email}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded-lg border-blue-500 outline-blue-400"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="telepon"
+                        placeholder="Nomor Telepon / WA"
+                        value={form.telepon}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded-lg border-blue-500 outline-blue-400"
+                        required
+                    />
+                    <div className='flex gap-4'>
+                        <div className='bg-white w-full border px-1 outline-blue-400 rounded-lg'>
+                            <select
+                                name="fakultas"
+                                value={form.fakultas}
+                                onChange={handleChange}
+                                className={`w-full py-2 rounded-lg outline-none ${form.fakultas ? 'text-black' : 'text-gray-400'}`}
+                                required
+                            >
+                                <option className='px-2'>Fakultas</option>
+                                {Object.keys(fakultasProdi).map((fakultas) => (
+                                    <option className='text-black px-2' key={fakultas} value={fakultas}>
+                                        {fakultas}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className='bg-white w-full border px-1 outline-blue-400 rounded-lg'>
+                            <select
+                                name="prodi"
+                                value={form.prodi}
+                                onChange={handleChange}
+                                className={`w-full py-2 rounded-lg outline-none ${form.fakultas ? 'text-black' : 'text-gray-400'}`}
+                                required
+                                disabled={!form.fakultas}
+                            >
+                                <option value="">Prodi</option>
+                                {prodiList.map((prodi) => (
+                                    <option className='text-black' key={prodi} value={prodi}>
+                                        {prodi}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div className='w-full mb-4'>
-                    <label className='mb-1 block font-semibold' htmlFor="confpassword">Confirm Password</label>
-                    <div className='flex justify-between rounded-md border border-blue-300 overflow-hidden bg-white shadow-2xl'>
-                        <input value={confPassword} onChange={(e) => setConfPassword(e.target.value)} type={`${showConfirmPasswordButton ? 'text' : 'password'}`} id='confpassword' required className='w-[85%] px-2 py-1 outline-none bg-transparent text-black' />
-                        <div className='w-[15%] cursor-pointer flex justify-center px-2 py-1' onClick={() => setShowConfirmPasswordButton(!showConfirmPasswordButton)}>
-                            <img className='block' src={`${showConfirmPasswordButton ? "/icons/showPassword.svg" : "/icons/hidePassword.svg"}`} alt="show password" />
-                        </div>
+                    <div className='flex gap-4'>
+                        <input
+                            type="number"
+                            name="semester"
+                            placeholder="Semester"
+                            value={form.semester}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 border rounded-lg border-blue-500 outline-blue-400"
+                            required
+                            min="1"
+                        />
+                        <input
+                            type="text"
+                            name="nim"
+                            placeholder="NIM"
+                            value={form.nim}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 border rounded-lg border-blue-500 outline-blue-400"
+                            required
+                        />
                     </div>
-                </div>
-                <button className='bg-gradient-to-r from-blue-600 to-blue-900 w-full  py-2 rounded font-semibold text-white' type='submit' disabled={isSubmitting}>{isSubmitting ? 'Mengirim...' : 'Registrasi'}</button>
-            </form>
+                    <div className="relative">
+                        <input
+                            type={showPasswordButton ? "text" : "password"}
+                            name="password"
+                            placeholder="Password"
+                            value={form.password}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 border rounded-lg pr-10 border-blue-500 outline-blue-400"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPasswordButton((prev) => !prev)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600"
+                        >
+                            {showPasswordButton ? <FaEye /> : <FaEyeSlash />}
+                        </button>
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div className="relative">
+                        <input
+                            type={showConfirmPasswordButton ? "text" : "password"}
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
+                            value={form.confirmPassword}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 border rounded-lg pr-10 border-blue-500 outline-blue-400"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowConfirmPasswordButton((prev) => !prev)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600"
+                        >
+                            {showConfirmPasswordButton ? <FaEye /> : <FaEyeSlash />}
+                        </button>
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 hover:bg-blue-700 font-robotoBold text-white font-bold py-2 rounded-lg"
+                    >
+                        Registrasi
+                    </button>
+                    <p className="text-center">
+                        Sudah punya akun?{" "}
+                        <span onClick={()=>setIsopen(true)} className="text-blue-700 hover:underline font-semibold">
+                            Login
+                        </span>
+                    </p>
+                </form>
+            </div>
+            <PopupLogin isOpen={isOpen}/>
         </div>
     )
 }

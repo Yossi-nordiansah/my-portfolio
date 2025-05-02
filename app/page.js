@@ -16,6 +16,7 @@ export default function Home() {
       <Program/>
       <Alur/>
       <QuestionsList/>
+      <video src="/videos/background.webm" autoPlay loop className='fixed w-full h-screen top-0 left-0 -z-10 object-cover'></video>
     </div>
   );
 }

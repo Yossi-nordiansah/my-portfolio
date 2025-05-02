@@ -7,8 +7,15 @@
   --foreground: #171717;
 }
 
-.active {
-  color: yellow;
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table th, .table td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: left; /* Optional: Align text to the left */
 }
 
 @media (prefers-color-scheme: dark) {
