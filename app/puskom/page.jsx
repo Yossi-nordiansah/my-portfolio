@@ -1,6 +1,11 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import FormPendaftaran from '../_component/formPendaftaran';
 
 const PuskomPage = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className='relative min-h-screen pt-24 pb-14 sm:px-10 px-4 bg-blue-950'>
             <div className='relative border-4 border-yellow-300 shadow-2xl border-dashed rounded-3xl w-fit mx-auto h-fit py-4'>
@@ -21,9 +26,7 @@ const PuskomPage = () => {
                 <div className='py-4 md:px-6 px-3'>
                     <h1 className='text-white font-robotoBold sm:text-2xl text-md mb-3'>Tahapan Dalam Pelatihan PUSKOM</h1>
                     <ol className='text-white md:pl-5 pl-4 pr-2 list-decimal selection:text-lg md:text-base text-sm'>
-                        <li>Sebelum mengisi formulir pendaftaran pastikan anda sudah melakukan pembayaran.</li>
-                        <li>Nominal pembayaran untuk pelatihan pusbas sebesar Rp 440.000,-</li>
-                        <li>Pembayaran dapat ditransfer melalui rekening BNI 678-456-6887 a.n. Universitas Islam Majapahit-Pusbas.</li>
+                        <li>Pastikan anda sudah melakukan pembayaran sebesar Rp 440.000,-. melalui rekening BNI 678-456-6887 a.n. Universitas Islam Majapahit-Pusbas.</li>
                         <li>Simpan bukti pembayaran dalam bentuk gambar (difoto/screenshoot).</li>
                         <li>Klik tombol daftar dibawah, isi semua form dengan benar.</li>
                         <li>Setelah melakukan pendaftaran status anda akan muncul pada halaman pelatihan.</li>
@@ -36,10 +39,11 @@ const PuskomPage = () => {
                     </ol>
                     <div className='flex items-start mt-6 flex-wrap justify-center md:gap-5 gap-3 h-fit'>
                         <a href='https://wa.me/6285655230897' target="_blank" className='bg-wa flex cursor-pointer gap-2 items-center px-3 py-2 w-fit h-fit rounded-md font-radjdhani_bold text-white'>Kontak <img src="/icons/wa.svg" alt="" className='w-5'/></a>
-                        <button className='shadow-md bg-green px-3 py-2 rounded-md text-white font-radjdhani_bold text-nowrap'>Daftar Sekarang</button>
+                        <button className='shadow-md bg-green px-3 py-2 rounded-md text-white font-radjdhani_bold text-nowrap' onClick={()=>setIsOpen(true)}>Daftar Sekarang</button>
                     </div>
                 </div>
             </div>
+            <FormPendaftaran isOpen={isOpen} close={()=>setIsOpen(false)}/>
         </div>
     )
 }
