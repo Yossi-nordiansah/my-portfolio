@@ -1,11 +1,5 @@
-import React from 'react'
+import { redirect } from 'next/navigation'
 
-const Admin = () => {
-  return (
-    <div className='h-screen bg-green'>
-    <h1 className='text-6xl text-center font-robotoExtraBold pt-20'>Admin</h1>
-  </div>
-  )
+export default function AdminRootPage() {
+  redirect('/admin/pelatihan')
 }
-
-export default Admin
