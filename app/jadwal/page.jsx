@@ -9,18 +9,21 @@ const Jadwal = () => {
       tanggal: "01 Januari 2025",
       jamMulai: "13.00",
       jamSelesai: "16.00",
+      agenda: "Pelatihan"
     },
     {
       hari: "Selasa",
       tanggal: "02 Januari 2025",
       jamMulai: "13.00",
       jamSelesai: "16.00",
+      agenda: "Pelatihan"
     },
     {
       hari: "Rabu",
       tanggal: "03 Januari 2025",
       jamMulai: "13.00",
       jamSelesai: "16.00",
+      agenda: "Ujian"
     },
   ]);
 
@@ -41,19 +44,21 @@ const Jadwal = () => {
             <table className='table h-fit w-fit text-center lg:text-nowrap'>
               <thead>
                 <tr className='bg-blue-600 text-white'>
-                  <th className='text-center sm:text-base text-sm'>Hari</th>
-                  <th className='text-center sm:text-base text-sm'>Tanggal</th>
-                  <th className='text-center sm:text-base text-sm sm:px-7'>Jam Mulai</th>
-                  <th className='text-center sm:text-base text-sm sm:px-7'>Jam Selesai</th>
+                  <th className='text-center sm:text-base text-[10px]'>Hari</th>
+                  <th className='text-center sm:text-base text-[10px]'>Tanggal</th>
+                  <th className='text-center sm:text-base text-[10px] sm:px-7'>Jam Mulai</th>
+                  <th className='text-center sm:text-base text-[10px] sm:px-7'>Jam Selesai</th>
+                  <th className='text-center sm:text-base text-[10px] sm:px-7'>Agenda</th>
                 </tr>
               </thead>
               <tbody>
                 {jadwalKelasA.map((item, index) => (
                   <tr key={index}>
-                    <td className='text-center sm:text-base text-sm'>{item.hari}</td>
-                    <td className='text-center sm:text-base text-sm'>{item.tanggal}</td>
-                    <td className='text-center sm:text-base text-sm'>{item.jamMulai}</td>
-                    <td className='text-center sm:text-base text-sm'>{item.jamSelesai}</td>
+                    <td className='text-center sm:text-base text-[10px]'>{item.hari}</td>
+                    <td className='text-center sm:text-base text-[10px]'>{item.tanggal}</td>
+                    <td className='text-center sm:text-base text-[10px]'>{item.jamMulai}</td>
+                    <td className='text-center sm:text-base text-[10px]'>{item.jamSelesai}</td>
+                    <td className='text-center sm:text-base text-[10px]'>{item.agenda}</td>
                   </tr>
                 ))}
               </tbody>
