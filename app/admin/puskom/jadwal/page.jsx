@@ -1,6 +1,7 @@
 // components/ScheduleTable.tsx
 'use client';
 
+import JadwalForm from '@/app/_component/admin/jadwalForm';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 import { useState } from 'react';
 
@@ -15,11 +16,11 @@ export default function AdminJadwal() {
     const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="pl-52 pr-6 pt-20">
+    <div className="relative pl-52 pr-6 pt-20">
       <h1 className="text-2xl font-semibold mb-4">Jadwal</h1>
 
-      <button className="bg-green text-white text-xl font-radjdhani_bold border rounded px-3 py-1 mb-4 flex items-center gap-2">
-        Tambah <Plus size={16} />
+      <button className="bg-green text-white text-xl font-radjdhani_bold border rounded px-3 py-1 mb-4 flex items-center gap-2" onClick={()=>setIsOpen(true)}>
+        Buat Jadwal <Plus size={16} />
       </button>
 
       <div className="mb-2 flex items-center gap-2">
@@ -74,6 +75,7 @@ export default function AdminJadwal() {
           </tbody>
         </table>
       </div>
+      <JadwalForm isOpen={isOpen} close={()=>setIsOpen(false)}/>
     </div>
   );
 }

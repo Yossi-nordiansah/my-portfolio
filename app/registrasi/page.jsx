@@ -98,7 +98,7 @@ const Registrasi = () => {
                                         {fakultas}
                                     </option>
                                 ))}
-                            </select>
+                            </select> 
                         </div>
                         <div className='bg-white w-full border px-1 outline-blue-400 rounded-lg'>
                             <select
