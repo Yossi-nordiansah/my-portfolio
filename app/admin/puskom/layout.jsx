@@ -19,7 +19,7 @@ const AdminLayout = ({ children }) => {
             <div className='absolute bg-primary h-full w-48 pt-24 z-10 text-white font-semibold'>
                 <p className='text-xl mb-10 px-3'>nama admin</p>
                 <ul className='flex-col'>
-                    <Link href="/admin/puskom/pelatihan" className={`py-4 border-y block px-3 ${pathName === "/admin/puskom/pelatihan" ? "bg-yellow-400" : ""}`}>
+                    <Link href="/admin/puskom/pelatihan" className={`py-4 border-y block px-3 ${pathName.startsWith("/admin/puskom/pelatihan") ? "bg-yellow-400" : ""}`}>
                         <li className='flex justify-between'>
                             <p>Pelatihan</p>
                             <img src="/icons/triangle.svg" alt="" className='w-5 rotate-90' />
