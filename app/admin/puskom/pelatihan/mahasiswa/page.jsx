@@ -45,6 +45,7 @@ export default function MahasiswaAdmin() {
                     <div className="flex items-center gap-2 bg-gray-300 px-2 py-2 rounded">
                         <UserGroupIcon className="h-5" />
                         <span className="text-base font-semibold">Mahasiswa</span>
+                        <span className="text-base font-semibold">40</span>
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
