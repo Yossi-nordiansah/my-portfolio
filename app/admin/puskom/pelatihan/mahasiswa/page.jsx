@@ -1,7 +1,7 @@
 "use client"
 import { Trash2, Pencil, Eye } from "lucide-react";
 import { UserGroupIcon } from '@heroicons/react/24/solid';
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import EmailEditor from "@/app/_component/admin/emailEditor";
 import { useState } from "react";
 
@@ -32,7 +32,13 @@ const mahasiswa = [
 export default function MahasiswaAdmin() {
 
     const router = useRouter();
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+
+    console.log(pathname)
+
+    const segments = pathname.split('/').filter(Boolean);
+    const lastSegmetst = segments[segments.length - 1];
 
     return (
         <div className="p-6">
@@ -101,7 +107,7 @@ export default function MahasiswaAdmin() {
                     ))}
                 </tbody>
             </table>
-            <EmailEditor isOpen={isOpen} close={()=>setIsOpen(false)}/>
+            <EmailEditor isOpen={isOpen} segment={lastSegmetst} close={()=>setIsOpen(false)}/>
         </div>
     );
 }

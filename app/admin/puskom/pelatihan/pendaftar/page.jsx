@@ -1,7 +1,7 @@
 "use client";
-import { Trash2, Pencil, Eye } from "lucide-react";
+import { Trash2, Pencil, Eye, Mail } from "lucide-react";
 import { PencilSquareIcon, CheckIcon, DocumentCurrencyDollarIcon } from '@heroicons/react/24/solid';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import EmailEditor from "@/app/_component/admin/emailEditor";
 import { useState } from "react";
 
@@ -50,9 +50,15 @@ const mahasiswa = [
 
 export default function MahasiswaAdmin() {
     const router = useRouter();
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const [selectedSemester, setSelectedSemester] = useState([]);
+
+    console.log(pathname)
+
+    const segments = pathname.split('/').filter(Boolean);
+    const lastSegmetst = segments[segments.length - 1];
 
     const toggleSemester = (sem) => {
         setSelectedSemester((prev) =>
@@ -74,6 +80,9 @@ export default function MahasiswaAdmin() {
                         <PencilSquareIcon className="h-5" />
                         <span className="text-base font-semibold">Pendaftar</span>
                         <span className="text-base font-semibold">40</span>
+                    </div>
+                    <div className="p-2 w-fit bg-gray-300 rounded cursor-pointer">
+                        <CheckIcon className="w-5 h-5" />
                     </div>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -195,13 +204,16 @@ export default function MahasiswaAdmin() {
                                 <button className="p-1 rounded hover:bg-gray-100 text-gray-600">
                                     <DocumentCurrencyDollarIcon className="w-5 h-5" />
                                 </button>
+                                <button className="p-1 rounded hover:bg-gray-100 text-gray-600">
+                                    <Mail size={16} />
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            <EmailEditor isOpen={isOpen} close={() => setIsOpen(false)} />
+            <EmailEditor isOpen={isOpen} segment={lastSegmetst} close={() => setIsOpen(false)} />
         </div>
     );
 }

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 import 'react-quill-new/dist/quill.snow.css'; // Import theme CSS
 
-const EmailEditor = ({isOpen, close}) => {
+const EmailEditor = ({isOpen, close, segment}) => {
 
     const [value, setValue] = useState('');
 
@@ -13,10 +13,14 @@ const EmailEditor = ({isOpen, close}) => {
         return;
     }
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
     return (
         <div className='inset-0 bg-black/50 absolute h-screen flex justify-center items-center z-[100]'>
             <div className='bg-white px-3 py-2 w-[60%] rounded-lg'>
-                <h1 className='font-radjdhani_bold text-2xl text-center my-3'>Kirim Email Ke Seluruh Mahasiswa</h1>
+                <h1 className='font-radjdhani_bold text-2xl text-center my-3'>Kirim Email Ke Seluruh {capitalizeFirstLetter(segment)}</h1>
                 <input type="text" placeholder='Subject...' className='border border-black px-3 py-2 w-full rounded-md'/>
                 <ReactQuill
                     value={value}

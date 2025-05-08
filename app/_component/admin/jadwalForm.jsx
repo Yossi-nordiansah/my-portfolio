@@ -36,7 +36,7 @@ const JadwalForm = ({ isOpen, close }) => {
           </select>
         </div>
 
-        <div className='max-h-60 overflow-scroll'>
+        <div className='max-h-60 overflow-y-auto'>
           <div className='flex flex-col gap-4 mb-3'>
             {jadwalList.map((_, index) => (
               <div key={index} className='flex gap-3'>
