@@ -91,7 +91,7 @@ export default function PesertaAdmin() {
                     <div className="rounded-xl border border-black overflow-hidden flex items-center">
                         <input
                             type="text"
-                            placeholder="Cari Pendaftar..."
+                            placeholder="Cari Peserta..."
                             className="outline-none px-3 py-1 w-64"
                         />
                         <button className="bg-gray-300 p-2">
