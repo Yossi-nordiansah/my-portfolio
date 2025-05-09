@@ -1,6 +1,6 @@
 "use client"
 import { Trash2, Pencil, Eye, Mail } from "lucide-react";
-import { CheckBadgeIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { usePathname, useRouter } from "next/navigation";
 import EmailEditor from "@/app/_component/admin/emailEditor";
 import { useState } from "react";
@@ -43,7 +43,7 @@ const mahasiswa = [
     }
 ];
 
-export default function LulusAdmin() {
+export default function RemidiAdmin() {
 
     const router = useRouter();
     const pathname = usePathname();
@@ -63,8 +63,8 @@ export default function LulusAdmin() {
                         <img src="/icons/back.svg" alt="Back" className="w-6" />
                     </button>
                     <div className="flex items-center gap-2 bg-gray-300 px-2 py-2 rounded">
-                        <CheckBadgeIcon className="h-5" />
-                        <span className="text-base font-semibold">Lulus</span>
+                        <ArrowPathIcon className="h-5" />
+                        <span className="text-base font-semibold">Remidial</span>
                         <span className="text-base font-semibold">40</span>
                     </div>
                 </div>
