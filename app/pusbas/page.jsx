@@ -1,10 +1,20 @@
 "use client"
 import React, { useState } from 'react'
 import FormPendaftaran from '../_component/formPendaftaran';
+import { usePathname } from 'next/navigation';
 
 const PusbasPage = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
+    const path = pathname.split('/').filter(Boolean);
+
+    function capitalizeFirstLetter(string) {
+        if (string.length === 0) return '';
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    const segments = path.map(segment => capitalizeFirstLetter(segment));
 
     return (
         <div className='relative min-h-screen pt-24 pb-14 sm:px-10 px-3 bg-blue-950'>
@@ -37,7 +47,7 @@ const PusbasPage = () => {
                         <li>Ujian akan dilakukan satu kali, bagi peserta yang tidak hadir akan dinyatakan gugur/gagal dalam ujian.</li>
                         <li>Peserta yang lulus ujian akan mendapatkan sertifikat yang dapat di download dari website ini.</li>
                         <li>Bagi peserta yang gagal akan mendapat kesempatan untuk remidi sebanyak satu kali.</li>
-                        <li>Apabila ada pertanyaan lebih lanjut dapat klik icon whatsapp dibawah.</li>
+                        <li>Apabila ada pertanyaan lebih lanjut dapat klik tombol kontak dibawah.</li>
                     </ol>
                     <div className='flex items-start mt-6 flex-wrap justify-center md:gap-5 gap-3 h-fit'>
                         <a href='https://wa.me/6285655230897' target="_blank" className='bg-wa flex cursor-pointer gap-2 items-center px-3 py-2 w-fit h-fit rounded-md font-radjdhani_bold text-white'>Kontak <img src="/icons/wa.svg" alt="" className='w-5' /></a>
@@ -45,7 +55,7 @@ const PusbasPage = () => {
                     </div>
                 </div>
             </div>
-            <FormPendaftaran isOpen={isOpen} close={() => setIsOpen(false)} />
+            <FormPendaftaran isOpen={isOpen} close={() => setIsOpen(false)} segment={segments}/>
         </div>
     )
 }

@@ -2,7 +2,7 @@
 import React from 'react'
 import { useRef, useEffect } from 'react';
 
-const FormPendaftaran = ({ isOpen, close }) => {
+const FormPendaftaran = ({ isOpen, close, segment }) => {
 
     const popupRef = useRef(null);
 
@@ -22,12 +22,12 @@ const FormPendaftaran = ({ isOpen, close }) => {
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 bg-green px-3 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black px-6 bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50">
             <div
                 ref={popupRef}
-                className="bg-white sm:p-6 p-3 rounded-lg shadow-lg w-80 border-2 border-yellow-300"
+                className="bg-white sm:p-6 p-3 rounded-lg shadow-lg w-fit border-2 border-yellow-300"
             >
-                <h2 className="text-2xl text-center font-robotoBold mb-4 text-blue-950">Form Pendaftaran</h2>
+                <h2 className="text-2xl sm:text-nowrap text-center font-robotoBold mb-4 text-blue-950">Form Pendaftaran {segment}</h2>
                 <form>
                     <div className="mb-3">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -91,7 +91,7 @@ const FormPendaftaran = ({ isOpen, close }) => {
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
                         >
-                            Login
+                            Daftar
                         </button>
                     </div>
                 </form>
