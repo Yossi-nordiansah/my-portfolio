@@ -30,7 +30,7 @@ const Home = () => {
                     speed={50}
                     cursor={false}
                     repeat={0}
-                    className="absolute font-kanit lg:text-4xl sm:text-4xl sm:text-left xs:text-[22px] xs:leading-[28px] text-[18px] xl:pl-32 lg:pl-14 md:pl-10 sm:pl-8 xs:pl-5 pl-5  text-sky-400 tracking-wider font-bold drop-shadow-[0_0px_15px_#0066ff]"
+                    className="absolute font-radjdhani_bold lg:text-5xl sm:text-4xl sm:text-left xs:text-[22px] xs:leading-[28px] text-[18px] xl:pl-32 lg:pl-14 md:pl-10 sm:pl-8 xs:pl-5 pl-5  text-sky-400 tracking-wider font-bold drop-shadow-[0_0px_15px_#0066ff]"
                 />
             </div>
 
