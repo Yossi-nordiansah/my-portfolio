@@ -116,7 +116,7 @@ const Project = () => {
     ])
 
     return (
-        <section className="pt-20 bg-gradient-to-b min-h-screen from-blue-950 to-blue-800 px-4">
+        <section className="pt-20 bg-gradient-to-b lg:min-h-screen lg:pb-0 pb-6 from-blue-950 to-blue-800 px-4">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl mb-6 font-bold text-center text-blue-300 font-poppins">Projects</h2>
                 <Slider {...settings}>
