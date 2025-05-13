@@ -10,7 +10,7 @@ const Home = () => {
         AOS.init();
     }, []);
 
-    const pdfURL = 'https://drive.google.com/file/d/1bc_fIXGVsPDWcqVp_2Q3TvZb4CDSXWsn/view?usp=sharing';
+    const pdfURL = 'https://drive.google.com/file/d/1SQ4euqAuE8GFtCCG0RbzvWedFx824D6f/view?usp=sharing';
     const [showContact, setShowContact] = useState(false);
     return (
         <main className="w-full min-w-full sm:pt-24 xs:pt-20 pt-16 bg-gradient-to-b grid grid-rows-[auto_auto_auto_auto_30px_auto] gap-y-3 from-blue-950 to-blue-800">
